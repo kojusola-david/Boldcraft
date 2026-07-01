@@ -78,6 +78,10 @@ export const ImageScalarFieldEnum = {
   filename: 'filename',
   mimetype: 'mimetype',
   size: 'size',
+  title: 'title',
+  description: 'description',
+  category: 'category',
+  tags: 'tags',
   uploadedAt: 'uploadedAt'
 } as const
 
@@ -118,4 +122,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

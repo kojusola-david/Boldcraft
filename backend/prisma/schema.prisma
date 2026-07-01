@@ -13,13 +13,17 @@ datasource db {
 }
 
 model Image {
-  id         String         @id @default(cuid())
-  baseId     String         @unique
-  filename   String
-  mimetype   String
-  size       Int
-  uploadedAt DateTime       @default(now())
-  variants   ImageVariant[]
+  id          String         @id @default(cuid())
+  baseId      String         @unique
+  filename    String
+  mimetype    String
+  size        Int
+  title       String?
+  description String?
+  category    String?
+  tags        String[]
+  uploadedAt  DateTime       @default(now())
+  variants    ImageVariant[]
 }
 
 model ImageVariant {

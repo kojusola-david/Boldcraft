@@ -40,6 +40,9 @@ export type ImageMinAggregateOutputType = {
   filename: string | null
   mimetype: string | null
   size: number | null
+  title: string | null
+  description: string | null
+  category: string | null
   uploadedAt: Date | null
 }
 
@@ -49,6 +52,9 @@ export type ImageMaxAggregateOutputType = {
   filename: string | null
   mimetype: string | null
   size: number | null
+  title: string | null
+  description: string | null
+  category: string | null
   uploadedAt: Date | null
 }
 
@@ -58,6 +64,10 @@ export type ImageCountAggregateOutputType = {
   filename: number
   mimetype: number
   size: number
+  title: number
+  description: number
+  category: number
+  tags: number
   uploadedAt: number
   _all: number
 }
@@ -77,6 +87,9 @@ export type ImageMinAggregateInputType = {
   filename?: true
   mimetype?: true
   size?: true
+  title?: true
+  description?: true
+  category?: true
   uploadedAt?: true
 }
 
@@ -86,6 +99,9 @@ export type ImageMaxAggregateInputType = {
   filename?: true
   mimetype?: true
   size?: true
+  title?: true
+  description?: true
+  category?: true
   uploadedAt?: true
 }
 
@@ -95,6 +111,10 @@ export type ImageCountAggregateInputType = {
   filename?: true
   mimetype?: true
   size?: true
+  title?: true
+  description?: true
+  category?: true
+  tags?: true
   uploadedAt?: true
   _all?: true
 }
@@ -191,6 +211,10 @@ export type ImageGroupByOutputType = {
   filename: string
   mimetype: string
   size: number
+  title: string | null
+  description: string | null
+  category: string | null
+  tags: string[]
   uploadedAt: Date
   _count: ImageCountAggregateOutputType | null
   _avg: ImageAvgAggregateOutputType | null
@@ -223,6 +247,10 @@ export type ImageWhereInput = {
   filename?: Prisma.StringFilter<"Image"> | string
   mimetype?: Prisma.StringFilter<"Image"> | string
   size?: Prisma.IntFilter<"Image"> | number
+  title?: Prisma.StringNullableFilter<"Image"> | string | null
+  description?: Prisma.StringNullableFilter<"Image"> | string | null
+  category?: Prisma.StringNullableFilter<"Image"> | string | null
+  tags?: Prisma.StringNullableListFilter<"Image">
   uploadedAt?: Prisma.DateTimeFilter<"Image"> | Date | string
   variants?: Prisma.ImageVariantListRelationFilter
 }
@@ -233,6 +261,10 @@ export type ImageOrderByWithRelationInput = {
   filename?: Prisma.SortOrder
   mimetype?: Prisma.SortOrder
   size?: Prisma.SortOrder
+  title?: Prisma.SortOrderInput | Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  category?: Prisma.SortOrderInput | Prisma.SortOrder
+  tags?: Prisma.SortOrder
   uploadedAt?: Prisma.SortOrder
   variants?: Prisma.ImageVariantOrderByRelationAggregateInput
 }
@@ -246,6 +278,10 @@ export type ImageWhereUniqueInput = Prisma.AtLeast<{
   filename?: Prisma.StringFilter<"Image"> | string
   mimetype?: Prisma.StringFilter<"Image"> | string
   size?: Prisma.IntFilter<"Image"> | number
+  title?: Prisma.StringNullableFilter<"Image"> | string | null
+  description?: Prisma.StringNullableFilter<"Image"> | string | null
+  category?: Prisma.StringNullableFilter<"Image"> | string | null
+  tags?: Prisma.StringNullableListFilter<"Image">
   uploadedAt?: Prisma.DateTimeFilter<"Image"> | Date | string
   variants?: Prisma.ImageVariantListRelationFilter
 }, "id" | "baseId">
@@ -256,6 +292,10 @@ export type ImageOrderByWithAggregationInput = {
   filename?: Prisma.SortOrder
   mimetype?: Prisma.SortOrder
   size?: Prisma.SortOrder
+  title?: Prisma.SortOrderInput | Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  category?: Prisma.SortOrderInput | Prisma.SortOrder
+  tags?: Prisma.SortOrder
   uploadedAt?: Prisma.SortOrder
   _count?: Prisma.ImageCountOrderByAggregateInput
   _avg?: Prisma.ImageAvgOrderByAggregateInput
@@ -273,6 +313,10 @@ export type ImageScalarWhereWithAggregatesInput = {
   filename?: Prisma.StringWithAggregatesFilter<"Image"> | string
   mimetype?: Prisma.StringWithAggregatesFilter<"Image"> | string
   size?: Prisma.IntWithAggregatesFilter<"Image"> | number
+  title?: Prisma.StringNullableWithAggregatesFilter<"Image"> | string | null
+  description?: Prisma.StringNullableWithAggregatesFilter<"Image"> | string | null
+  category?: Prisma.StringNullableWithAggregatesFilter<"Image"> | string | null
+  tags?: Prisma.StringNullableListFilter<"Image">
   uploadedAt?: Prisma.DateTimeWithAggregatesFilter<"Image"> | Date | string
 }
 
@@ -282,6 +326,10 @@ export type ImageCreateInput = {
   filename: string
   mimetype: string
   size: number
+  title?: string | null
+  description?: string | null
+  category?: string | null
+  tags?: Prisma.ImageCreatetagsInput | string[]
   uploadedAt?: Date | string
   variants?: Prisma.ImageVariantCreateNestedManyWithoutImageInput
 }
@@ -292,6 +340,10 @@ export type ImageUncheckedCreateInput = {
   filename: string
   mimetype: string
   size: number
+  title?: string | null
+  description?: string | null
+  category?: string | null
+  tags?: Prisma.ImageCreatetagsInput | string[]
   uploadedAt?: Date | string
   variants?: Prisma.ImageVariantUncheckedCreateNestedManyWithoutImageInput
 }
@@ -302,6 +354,10 @@ export type ImageUpdateInput = {
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   mimetype?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tags?: Prisma.ImageUpdatetagsInput | string[]
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   variants?: Prisma.ImageVariantUpdateManyWithoutImageNestedInput
 }
@@ -312,6 +368,10 @@ export type ImageUncheckedUpdateInput = {
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   mimetype?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tags?: Prisma.ImageUpdatetagsInput | string[]
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   variants?: Prisma.ImageVariantUncheckedUpdateManyWithoutImageNestedInput
 }
@@ -322,6 +382,10 @@ export type ImageCreateManyInput = {
   filename: string
   mimetype: string
   size: number
+  title?: string | null
+  description?: string | null
+  category?: string | null
+  tags?: Prisma.ImageCreatetagsInput | string[]
   uploadedAt?: Date | string
 }
 
@@ -331,6 +395,10 @@ export type ImageUpdateManyMutationInput = {
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   mimetype?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tags?: Prisma.ImageUpdatetagsInput | string[]
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -340,7 +408,19 @@ export type ImageUncheckedUpdateManyInput = {
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   mimetype?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tags?: Prisma.ImageUpdatetagsInput | string[]
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
 }
 
 export type ImageCountOrderByAggregateInput = {
@@ -349,6 +429,10 @@ export type ImageCountOrderByAggregateInput = {
   filename?: Prisma.SortOrder
   mimetype?: Prisma.SortOrder
   size?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  tags?: Prisma.SortOrder
   uploadedAt?: Prisma.SortOrder
 }
 
@@ -362,6 +446,9 @@ export type ImageMaxOrderByAggregateInput = {
   filename?: Prisma.SortOrder
   mimetype?: Prisma.SortOrder
   size?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  category?: Prisma.SortOrder
   uploadedAt?: Prisma.SortOrder
 }
 
@@ -371,6 +458,9 @@ export type ImageMinOrderByAggregateInput = {
   filename?: Prisma.SortOrder
   mimetype?: Prisma.SortOrder
   size?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  category?: Prisma.SortOrder
   uploadedAt?: Prisma.SortOrder
 }
 
@@ -383,6 +473,10 @@ export type ImageScalarRelationFilter = {
   isNot?: Prisma.ImageWhereInput
 }
 
+export type ImageCreatetagsInput = {
+  set: string[]
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -393,6 +487,15 @@ export type IntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type ImageUpdatetagsInput = {
+  set?: string[]
+  push?: string | string[]
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -419,6 +522,10 @@ export type ImageCreateWithoutVariantsInput = {
   filename: string
   mimetype: string
   size: number
+  title?: string | null
+  description?: string | null
+  category?: string | null
+  tags?: Prisma.ImageCreatetagsInput | string[]
   uploadedAt?: Date | string
 }
 
@@ -428,6 +535,10 @@ export type ImageUncheckedCreateWithoutVariantsInput = {
   filename: string
   mimetype: string
   size: number
+  title?: string | null
+  description?: string | null
+  category?: string | null
+  tags?: Prisma.ImageCreatetagsInput | string[]
   uploadedAt?: Date | string
 }
 
@@ -453,6 +564,10 @@ export type ImageUpdateWithoutVariantsInput = {
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   mimetype?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tags?: Prisma.ImageUpdatetagsInput | string[]
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -462,6 +577,10 @@ export type ImageUncheckedUpdateWithoutVariantsInput = {
   filename?: Prisma.StringFieldUpdateOperationsInput | string
   mimetype?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tags?: Prisma.ImageUpdatetagsInput | string[]
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -502,6 +621,10 @@ export type ImageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   filename?: boolean
   mimetype?: boolean
   size?: boolean
+  title?: boolean
+  description?: boolean
+  category?: boolean
+  tags?: boolean
   uploadedAt?: boolean
   variants?: boolean | Prisma.Image$variantsArgs<ExtArgs>
   _count?: boolean | Prisma.ImageCountOutputTypeDefaultArgs<ExtArgs>
@@ -513,6 +636,10 @@ export type ImageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   filename?: boolean
   mimetype?: boolean
   size?: boolean
+  title?: boolean
+  description?: boolean
+  category?: boolean
+  tags?: boolean
   uploadedAt?: boolean
 }, ExtArgs["result"]["image"]>
 
@@ -522,6 +649,10 @@ export type ImageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   filename?: boolean
   mimetype?: boolean
   size?: boolean
+  title?: boolean
+  description?: boolean
+  category?: boolean
+  tags?: boolean
   uploadedAt?: boolean
 }, ExtArgs["result"]["image"]>
 
@@ -531,10 +662,14 @@ export type ImageSelectScalar = {
   filename?: boolean
   mimetype?: boolean
   size?: boolean
+  title?: boolean
+  description?: boolean
+  category?: boolean
+  tags?: boolean
   uploadedAt?: boolean
 }
 
-export type ImageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "baseId" | "filename" | "mimetype" | "size" | "uploadedAt", ExtArgs["result"]["image"]>
+export type ImageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "baseId" | "filename" | "mimetype" | "size" | "title" | "description" | "category" | "tags" | "uploadedAt", ExtArgs["result"]["image"]>
 export type ImageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   variants?: boolean | Prisma.Image$variantsArgs<ExtArgs>
   _count?: boolean | Prisma.ImageCountOutputTypeDefaultArgs<ExtArgs>
@@ -553,6 +688,10 @@ export type $ImagePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     filename: string
     mimetype: string
     size: number
+    title: string | null
+    description: string | null
+    category: string | null
+    tags: string[]
     uploadedAt: Date
   }, ExtArgs["result"]["image"]>
   composites: {}
@@ -983,6 +1122,10 @@ export interface ImageFieldRefs {
   readonly filename: Prisma.FieldRef<"Image", 'String'>
   readonly mimetype: Prisma.FieldRef<"Image", 'String'>
   readonly size: Prisma.FieldRef<"Image", 'Int'>
+  readonly title: Prisma.FieldRef<"Image", 'String'>
+  readonly description: Prisma.FieldRef<"Image", 'String'>
+  readonly category: Prisma.FieldRef<"Image", 'String'>
+  readonly tags: Prisma.FieldRef<"Image", 'String[]'>
   readonly uploadedAt: Prisma.FieldRef<"Image", 'DateTime'>
 }
     

@@ -9,6 +9,7 @@ import { multerFilter, validateMagicBytes } from './services/validation.js';
 import rateLimit from 'express-rate-limit';
 import bcrypt from 'bcrypt';
 import { signToken, requireAuth } from './services/auth.js';
+import { Prisma } from './generated/prisma/client.js';
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
@@ -87,20 +88,30 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
+
+
 app.get('/api/images', async (req, res) => {
   try {
     const page = Math.max(1, parseInt(req.query.page as string) || 1);
     const limit = Math.min(50, Math.max(1, parseInt(req.query.limit as string) || 20));
     const skip = (page - 1) * limit;
+    const category = req.query.category as string | undefined;
+    const tag = req.query.tag as string | undefined;
+
+    const where: Prisma.ImageWhereInput = {};
+
+    if (category) where.category = category;
+    if (tag) where.tags = { has: tag };
 
     const [images, total] = await Promise.all([
       prisma.image.findMany({
+        where,
         skip,
         take: limit,
         include: { variants: true },
         orderBy: { uploadedAt: 'desc' },
       }),
-      prisma.image.count(),
+      prisma.image.count({ where }),
     ]);
 
     res.json({
@@ -117,6 +128,22 @@ app.get('/api/images', async (req, res) => {
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Unknown error';
     res.status(500).json({ error: 'Failed to fetch images', detail: message });
+  }
+});
+
+app.get('/api/images/:id', async (req, res) => {
+  try {
+    const image = await prisma.image.findFirst({
+      where: { id: req.params.id as string },
+      include: { variants: true },
+    });
+
+    if (!image) return res.status(404).json({ error: 'Image not found' });
+
+    res.json(image);
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'Unknown error';
+    res.status(500).json({ error: 'Failed to fetch image', detail: message });
   }
 });
 
@@ -162,12 +189,20 @@ app.post('/api/upload', uploadLimiter, requireAuth, memStorage.single('file'), a
 
     const { baseId, variants } = await processAndUpload(req.file);
 
+    const tags = req.body.tags
+      ? (req.body.tags as string).split(',').map((t: string) => t.trim()).filter(Boolean)
+      : [];
+
     const image = await prisma.image.create({
       data: {
         baseId,
         filename: req.file.originalname,
         mimetype: req.file.mimetype,
         size: req.file.size,
+        title: req.body.title ?? null,
+        description: req.body.description ?? null,
+        category: req.body.category ?? null,
+        tags,
         variants: {
           create: variants.map(v => ({
             name: v.variant,
