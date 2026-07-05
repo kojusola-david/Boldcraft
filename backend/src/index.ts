@@ -10,6 +10,9 @@ import rateLimit from 'express-rate-limit';
 import bcrypt from 'bcrypt';
 import { signToken, requireAuth } from './services/auth.js';
 import { Prisma } from './generated/prisma/client.js';
+import cors from 'cors';
+
+
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
@@ -24,6 +27,10 @@ const memStorage = multer({
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
   fileFilter: multerFilter,
 });
+
+app.use(cors({
+  origin: 'http://localhost:5173', // Vite's default port
+}));
 
 // Login
 app.post('/api/auth/login', async (req, res) => {
