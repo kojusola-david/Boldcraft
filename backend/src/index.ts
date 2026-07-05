@@ -21,16 +21,19 @@ cloudinary.config({
 });
 
 const app = express();
+
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
 app.use(express.json());
 const memStorage = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
   fileFilter: multerFilter,
 });
-
-app.use(cors({
-  origin: 'http://localhost:5173', // Vite's default port
-}));
 
 // Login
 app.post('/api/auth/login', async (req, res) => {
