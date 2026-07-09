@@ -21,12 +21,6 @@ export default function ImageCard({ image, isOwner, onDelete }: Props) {
           loading="lazy"
         />
       </a>
-      <div className="image-card__info">
-        {image.title && <p className="image-card__title">{image.title}</p>}
-        {image.category && (
-          <span className="image-card__category">{image.category}</span>
-        )}
-      </div>
       {isOwner && (
         <button
           className="image-card__delete"
@@ -36,6 +30,13 @@ export default function ImageCard({ image, isOwner, onDelete }: Props) {
           ✕
         </button>
       )}
+      <div className="image-card__info">
+        {image.title && <p className="image-card__title">{image.title}</p>}
+        {image.category && (
+          <span className="image-card__category">{image.category}</span>
+        )}
+      </div>
+      
     </div>
   );
 }

@@ -3,12 +3,6 @@
     margin: 4rem 2rem 4rem 2rem;
 }
 
-h1 {
-    font-family: var(--font-body);
-    font-size: 8rem;
-    color: var(--color-accent);
-}
-
 p {
   font-family: var(--font-body);
   color: var(--color-text);

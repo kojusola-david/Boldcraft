@@ -35,6 +35,7 @@ export default function Gallery({ isOwner, token }: Props) {
 
   return (
     <div>
+      <h2 className='header-secondary' id='gallery-header'>Gallery</h2>
       {isOwner && token && (
         <div className="gallery__toolbar">
           <UploadButton token={token} onUpload={handleUpload} />

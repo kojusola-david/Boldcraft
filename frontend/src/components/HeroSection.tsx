@@ -6,7 +6,7 @@ export default function HeroSection(){
         <div className="hero">
             <div className="main">
                 <div className="intro">
-                    <h1>Boldcraft</h1>
+                    <h1 className='header-main'>Boldcraft</h1>
                     <p id="by-timmy">By Timmy</p>
                     <p id="main-p">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid natus, nisi eos quaerat facilis tenetur cumque, incidunt, corrupti porro temporibus et non officia quasi suscipit soluta aut corporis eum quas?</p>
                     <div id="main-buttons">

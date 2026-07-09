@@ -52,3 +52,14 @@ button {
 .button-primary {
   background-color: var(--color-accent);
 }
+
+.header-main {
+    font-family: var(--font-body);
+    font-size: 8rem;
+    color: var(--color-accent);
+}
+
+.header-secondary {
+  font-family: var(--font-body);
+  font-size: 3rem;
+}

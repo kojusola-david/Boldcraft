@@ -5,6 +5,10 @@
   gap: 2rem;
 }
 
+#gallery-header {
+  text-align: center;
+}
+
 .image-card {
   overflow: hidden;
   border-radius: 8px;
@@ -22,6 +26,7 @@
   height: 100%;
   overflow: hidden;
   border-radius: 8px;
+  position: relative;
 }
 
 /* half size = default, spans 1 row */
@@ -32,4 +37,11 @@
 /* big = double height, spans 2 rows */
 .gallery-item.big {
   grid-row: span 2;
+}
+
+.image-card__delete {
+    position: absolute;
+    z-index: 2;
+    left: 1rem;
+    top: 1rem;
 }
